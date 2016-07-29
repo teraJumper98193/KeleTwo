@@ -14,4 +14,10 @@ class Kele
         raise InvalidStudentCodeError.new() if response.code == 401
 
     end
+
+    def get_me
+        response = self.class.get(base_api_endpoint("users/me"), headers: { "authorization" => @auth_token })
+        @user_data = JSON.parse(response.body)
+    end
+    
 end
